@@ -1,98 +1,139 @@
+#include <fstream>
+#include <vector>
+#include <memory>
 #include <iostream>
-#include <openssl/evp.h>
-#include <iomanip>
-#include <sstream>
-#include <string>
-#include<vector>
-#include<memory>
-std::string sha256(const std::string& str) {
-    EVP_MD_CTX* ctx = EVP_MD_CTX_new();
-    if (!ctx) throw std::runtime_error("Failed to create EVP_MD_CTX");
+#include <ctime>
+#include "blocks.hpp"
 
-    const EVP_MD* md = EVP_sha256();
-    unsigned char hash[EVP_MAX_MD_SIZE];
-    unsigned int length;
+class z_chain
+{
+private:
+    std::vector<std::shared_ptr<z_block>> blocks;
 
-    if (1 != EVP_DigestInit_ex(ctx, md, nullptr)) {
-        EVP_MD_CTX_free(ctx);
-        throw std::runtime_error("EVP_DigestInit_ex failed");
+public:
+    std::string top_hash()
+    {
+        return blocks[blocks.size() - 1]->get_c_hash();
     }
 
-    if (1 != EVP_DigestUpdate(ctx, str.c_str(), str.size())) {
-        EVP_MD_CTX_free(ctx);
-        throw std::runtime_error("EVP_DigestUpdate failed");
+    z_chain()
+    {
+        std::string d = "sriram.";
+        std::string h = "0";
+        z_block gen(d, h, std::time(nullptr));
+        add_block(gen);
     }
 
-    if (1 != EVP_DigestFinal_ex(ctx, hash, &length)) {
-        EVP_MD_CTX_free(ctx);
-        throw std::runtime_error("EVP_DigestFinal_ex failed");
+    void add_block(z_block &blk)
+    {
+        blocks.push_back(std::make_shared<z_block>(blk));
     }
 
-    EVP_MD_CTX_free(ctx);
-
-    std::stringstream ss;
-    for (unsigned int i = 0; i < length; ++i) {
-        ss << std::hex << std::setw(2) << std::setfill('0') << (int)hash[i];
+    void print_chain()
+    {
+        for (const auto &blk : blocks)
+        {
+            std::cout << "---\ndata: " << blk->get_data() << "\nprev hash: " << blk->get_p_hash() << "\ncurr hash: " << blk->get_c_hash() << "\ntimestamp: " << blk->get_timestamp() << "\n---" << std::endl;
+        }
     }
 
-    return ss.str();
+    void save_to_file(const std::string &filename)
+    {
+        std::ofstream ofs(filename);
+        if (!ofs)
+        {
+            std::cerr << "Error in opening file for saving" << '\n';
+            return;
+        }
+
+        std::cout << "File opened successfully for writing." << std::endl;
+
+        for (const auto &b : blocks)
+        {
+            // std::cout << "Writing block data: "
+            //           << b->get_data() << " "
+            //           << b->get_p_hash() << " "
+            //           << b->get_c_hash() << " "
+            //           << b->get_timestamp() << std::endl;
+
+            ofs << b->get_data() << " " << b->get_p_hash() << " " << b->get_c_hash() << " " << b->get_timestamp() << std::endl;
+        }
+
+        ofs.flush();
+        if (ofs.fail())
+        {
+            std::cerr << "Error flushing data to file." << std::endl;
+        }
+
+        std::cout << "Chain saved to file!" << std::endl;
+    }
+
+    void retrive_from_file(const std::string &filename)
+    {
+        std::ifstream ifs(filename);
+
+        if (!ifs)
+        {
+            std::cerr << "Error opening file for reading" << '\n';
+            return;
+        }
+
+        blocks.clear();
+
+        std::string data, prev_hash, curr_hash;
+        time_t timestamp;
+
+        while (ifs >> data >> prev_hash >> curr_hash >> timestamp)
+        {
+            // std::cout << "Data: " << data << ", Prev Hash: " << prev_hash << ", Curr Hash: " << curr_hash << ", Timestamp: " << timestamp;
+            z_block blk(data, prev_hash, curr_hash, timestamp);
+            blocks.push_back(std::make_shared<z_block>(blk));
+        }
+
+        std::cout << "Blockchain loaded from file" << '\n';
+    }
+};
+
+void test()
+{
+    std::vector<std::string> blockData = {
+        "Randomdata1",
+        "Randomdata2",
+        "Randomdata3",
+        "Randomdata4"};
+
+    std::cout << "Test Case 1: Create a chain and add blocks\n";
+    z_chain myChain;
+    myChain.print_chain();
+
+    for (const auto &data : blockData)
+    {
+        z_block newBlock(data, myChain.top_hash(), std::time(nullptr));
+        myChain.add_block(newBlock);
+    }
+
+    myChain.print_chain();
+
+    std::cout << "\nTest Case 2: Save chain to a file\n";
+    std::string filename = "z_chain.txt";
+    myChain.save_to_file(filename);
+
+    std::cout << "Chain saved to file: " << filename << "\n";
+
+    std::cout << "\nTest Case 3: Retrieve chain from file\n";
+
+    z_chain newChain;
+    newChain.retrive_from_file(filename);
+    newChain.print_chain();
 }
 
-using namespace std;
-class z_block{
-private:
-    std::string data;
-    std::string prev_hash;
-    std::string cur_hash;
-public:
-    string get_data(){
-        return data;
-    }
-    string get_p_hash(){
-        return prev_hash;
-    }
-    string get_c_hash(){
-        return cur_hash;
-    }
-    z_block(string data,string prev_hash ){
-        this->data=data;
-        this->prev_hash=prev_hash;
-        this->cur_hash=sha256(data+prev_hash);
-    }
-    
-};
-
-class z_chain{
-    private:
-        std::vector<shared_ptr<z_block>> blocks;
-    public:
-        string top_hash(){
-            return blocks[blocks.size()-1]->get_c_hash();
-        }
-        z_chain(){
-            string d="sriram.";
-            string h="0";
-            z_block gen(d,h);
-            add_block(gen);
-        }
-        void add_block( z_block& blk){
-            blocks.push_back(make_shared<z_block>(blk));
-        }
-        void print_chain(){
-            for (const auto& blk:blocks)
-            {
-                cout<<"---\ndata: "<<blk->get_data()<<"\nprev hash: "<<blk->get_p_hash()<<"\n---"<<endl;
-            }
-        }
-};
-
-
-
-int main(){
+int main()
+{
     z_chain myfirst;
-    string x;
-    cin>>x;
-    z_block tmp(x,myfirst.top_hash());
+    std::string x = "junkie";
+    z_block tmp(x, myfirst.top_hash(), std::time(nullptr));
     myfirst.add_block(tmp);
     myfirst.print_chain();
+
+    test();
 }
