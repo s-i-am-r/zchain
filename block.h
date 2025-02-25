@@ -24,3 +24,4 @@ public:
 };
 
 #endif // BLOCK_H
+// This is bogus
