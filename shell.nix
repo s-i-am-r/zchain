@@ -2,7 +2,9 @@
 
 pkgs.mkShell {
   buildInputs =with pkgs; [
-   	(vscode.fhsWithPackages (ps: with ps; [ gcc14 gdb  ]))  
+    vscode-fhs
+    gcc14
+    gdb
     pkg-config 
     openssl 
     meson
