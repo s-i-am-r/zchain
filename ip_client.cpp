@@ -18,9 +18,9 @@ public:
     awaitable<void> sendtext()
     {
         std::string msg = "hello!!!";
-        int len = co_await sk.async_send_to(buffer(msg), remote,use_awaitable);
+        int len = co_await sk.async_send_to(buffer(msg), remote, use_awaitable);
         udp::endpoint sender;
-        len = co_await sk.async_receive_from(buffer(buff), sender,use_awaitable);
+        len = co_await sk.async_receive_from(buffer(buff), sender, use_awaitable);
         Json::Value xx;
         std::istringstream ss(std::string(buff.data(), len));
         ss >> xx;
@@ -37,7 +37,7 @@ public:
                 sk_.send_to(boost::asio::buffer(message), remote_);
             }
         }
-        std::cout<<"done\n";
+        std::cout << "done\n";
         while (true)
         {
             co_await receive_stuff();
