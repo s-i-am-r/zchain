@@ -3,7 +3,7 @@
 #include <memory>
 #include <iostream>
 #include <ctime>
-#include "blocks.hpp"
+#include "block.h"
 
 class z_chain
 {
@@ -95,13 +95,13 @@ public:
 };
 
 
-int main()
-{
-    z_chain myfirst;
-    std::string x = "junkie";
-    z_block tmp(x, myfirst.top_hash(), std::time(nullptr));
-    myfirst.add_block(tmp);
-    myfirst.print_chain();
+// int main()
+// {
+//     z_chain myfirst;
+//     std::string x = "junkie";
+//     z_block tmp(x, myfirst.top_hash(), std::time(nullptr));
+//     myfirst.add_block(tmp);
+//     myfirst.print_chain();
 
-    test();
-}
+//     // test();
+// }

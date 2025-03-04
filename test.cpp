@@ -1,5 +1,16 @@
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include "block.h"
+#include "chain.cpp"
+#include "Transaction/Transaction.h"
+#include "Transaction/BlockchainNode.h"
+#include "Transaction/TXInput.h"
+#include "Transaction/TXOutput.h"
+#include "Transaction/utxo.h"
+#include "Transaction/UTXOSet.h"
 
-void test()
+void testBlockchain()
 {
     std::vector<std::string> blockData = {
         "Randomdata1",
@@ -30,4 +41,34 @@ void test()
     z_chain newChain;
     newChain.retrive_from_file(filename);
     newChain.print_chain();
+}
+
+void testTransactions()
+{
+    BlockchainNode node;
+
+    // Example transaction
+    Transaction tx1(
+        {TxInput("123456", 0, "AliceSignature")},
+        {TxOutput(0.6, "Bob"), TxOutput(0.4, "Alice")});
+
+    node.processTransaction(tx1);
+
+    // Another transaction
+    Transaction tx2(
+        {TxInput(tx1.txID, 0, "BobSignature")},
+        {TxOutput(0.3, "Charlie"), TxOutput(0.3, "Bob")});
+
+    node.processTransaction(tx2);
+}
+
+int main()
+{
+    std::cout << "Running blockchain tests...\n";
+    testBlockchain();
+
+    std::cout << "\nRunning transaction tests...\n";
+    testTransactions();
+
+    return 0;
 }
