@@ -10,7 +10,6 @@ class UDPserver
 public:
     UDPserver(io_context &io, int port) : me(io, ip::udp::endpoint(ip::udp::v6(), port))
     {
-
         startListening();
     }
     void startListening()

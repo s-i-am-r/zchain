@@ -1,0 +1,117 @@
+[2025-03-12 15:29:39] cli server started /tmp/z_node
+[2025-03-12 15:29:39] 
+[2025-03-12 15:30:36] cli server started /tmp/z_node
+[2025-03-12 15:30:36] 
+[2025-03-12 15:30:39] peer connected!
+[2025-03-12 15:30:39] txn received!: "dummy txn "
+[2025-03-12 15:30:41] command received. list clients
+[2025-03-12 15:30:41] peer 1ip: ::1
+port: 44636
+[2025-03-12 15:30:44] command received. list clients
+[2025-03-12 15:30:44] peer 1ip: ::1
+port: 44636
+[2025-03-12 15:30:45] command received. list clients
+[2025-03-12 15:30:45] peer 1ip: ::1
+port: 44636
+[2025-03-12 15:30:47] peer connected!
+[2025-03-12 15:30:47] txn received!: "dummy txn "
+[2025-03-12 15:30:48] command received. list clients
+[2025-03-12 15:30:48] peer 1ip: ::1
+port: 44636peer 1ip: ::1
+port: 34470
+[2025-03-12 15:31:45] cli server started /tmp/z_node
+[2025-03-12 15:31:45] 
+[2025-03-12 15:31:48] command received. list clients
+[2025-03-12 15:31:48] 
+
+[2025-03-12 15:31:50] command received. list clients
+[2025-03-12 15:31:50] 
+
+[2025-03-12 15:31:52] command received. list clients
+[2025-03-12 15:31:52] 
+
+[2025-03-12 15:32:00] peer connected!
+[2025-03-12 15:32:00] txn received!: "dummy txn "
+[2025-03-12 15:32:06] command received. list clients
+[2025-03-12 15:32:06] 
+peer 1ip: ::1
+port: 55154
+[2025-03-12 15:32:10] peer connected!
+[2025-03-12 15:32:10] txn received!: "dummy txn "
+[2025-03-12 15:32:14] command received. list clients
+[2025-03-12 15:32:14] 
+peer 1ip: ::1
+port: 55154peer 1ip: ::1
+port: 46610
+[2025-03-12 15:32:50] cli server started /tmp/z_node
+[2025-03-12 15:32:50] 
+[2025-03-12 15:32:53] command received. list clients
+[2025-03-12 15:32:53] 
+
+[2025-03-12 15:32:55] peer connected!
+[2025-03-12 15:32:55] txn received!: "dummy txn "
+[2025-03-12 15:32:56] command received. list clients
+[2025-03-12 15:32:56] 
+peer 1ip: ::1
+port: 53942
+
+[2025-03-12 15:32:57] peer connected!
+[2025-03-12 15:32:57] txn received!: "dummy txn "
+[2025-03-12 15:32:58] command received. list clients
+[2025-03-12 15:32:58] 
+peer 1ip: ::1
+port: 53942
+peer 1ip: ::1
+port: 53950
+
+[2025-03-12 16:16:31] 
+[2025-03-12 16:16:31] cli server started /tmp/z_nodeê
+[2025-03-12 16:16:45] åÕB
+[2025-03-12 16:16:45] cli server started /tmp/z_nodeÇ
+[2025-03-12 16:24:31] 
+[2025-03-12 16:24:31] cli server started /tmp/z_nodeê
+[2025-03-12 16:26:35] 
+[2025-03-12 16:26:35] 8080
+[2025-03-12 16:26:35] cli server started /tmp/z_nodeê
+[2025-03-12 16:29:08] 
+[2025-03-12 16:29:08] 8080
+[2025-03-12 16:29:08] cli server started /tmp/z_nodeê
+[2025-03-12 16:30:09] 
+[2025-03-12 16:30:09] 8080
+[2025-03-12 16:30:09] cli server started /tmp/z_node8080
+[2025-03-12 16:30:24] 8081
+[2025-03-12 16:30:24] cli server started /tmp/z_node8081
+[2025-03-12 16:30:24] 
+[2025-03-12 16:32:43] command received. "add peer"
+[2025-03-12 16:32:43] peer connected!
+[2025-03-12 16:32:43] peer connected!
+[2025-03-12 16:32:43] txn received!: "dummy txn "
+[2025-03-12 16:33:17] command received. "list clients"
+[2025-03-12 16:33:17] 
+peer 1ip: ::1
+port: 8081
+
+[2025-03-12 16:33:29] command received. "list clients"
+[2025-03-12 16:33:29] 
+peer 1ip: ::1
+port: 34932
+
+[2025-03-12 16:36:49] command received. "list clients"
+[2025-03-12 16:36:49] 
+peer 1ip: ::1
+port: 34932
+
+[2025-03-12 16:37:16] 
+[2025-03-12 16:37:16] 8082
+[2025-03-12 16:37:16] cli server started /tmp/z_node8082
+[2025-03-12 16:37:55] command received. "add peer"
+[2025-03-12 16:37:55] peer connected!
+[2025-03-12 16:37:55] peer connected!
+[2025-03-12 16:37:55] txn received!: "dummy txn "
+[2025-03-12 16:38:31] command received. "list clients"
+[2025-03-12 16:38:31] 
+peer 1ip: ::1
+port: 8081
+peer 2ip: ::1
+port: 57474
+
