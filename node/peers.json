@@ -1,0 +1,9 @@
+{
+    "cmd":"send txn",
+    "txn":{
+        "type": "money",
+        "from":"0x87664687ef",
+        "to": "0x87843ea",
+        "amount":0.8
+    }
+}
