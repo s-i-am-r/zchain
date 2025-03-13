@@ -115,3 +115,91 @@ port: 8081
 peer 2ip: ::1
 port: 57474
 
+[2025-03-12 18:19:11] 8080
+[2025-03-12 18:19:11] cli server started /tmp/z_node8080
+[2025-03-12 18:19:11] 
+[2025-03-12 18:19:33] 
+[2025-03-12 18:19:33] 8081
+[2025-03-12 18:19:33] cli server started /tmp/z_node8081
+[2025-03-12 18:21:26] command received. "add peer"
+[2025-03-12 18:21:26] peer connected!
+[2025-03-12 18:21:26] peer connected!
+[2025-03-12 18:31:18] command received. "send txn"
+[2025-03-12 18:34:30] 
+[2025-03-12 18:34:30] 8080
+[2025-03-12 18:34:30] cli server started /tmp/z_node8080
+[2025-03-12 18:34:38] 
+[2025-03-12 18:34:38] 8081
+[2025-03-12 18:34:38] cli server started /tmp/z_node8081
+[2025-03-12 18:34:49] command received. "add peer"
+[2025-03-12 18:34:49] peer connected!
+[2025-03-12 18:34:49] peer connected!
+[2025-03-12 18:36:09] command received. "send txn"
+[2025-03-12 18:36:29] command received. "send txn"
+[2025-03-12 18:36:31] command received. "send txn"
+[2025-03-12 18:39:01] 
+[2025-03-12 18:39:01] 8080
+[2025-03-12 18:39:01] cli server started /tmp/z_node8080
+[2025-03-12 18:39:04] 8081
+[2025-03-12 18:39:04] cli server started /tmp/z_node8081
+[2025-03-12 18:39:04] 
+[2025-03-12 18:39:07] command received. "add peer"
+[2025-03-12 18:39:07] peer connected!
+[2025-03-12 18:39:07] peer connected!
+[2025-03-12 18:40:13] command received. "list clients"
+[2025-03-12 18:40:13] 
+peer 1ip: ::1
+port: 8080
+
+[2025-03-12 18:40:21] command received. "list clients"
+[2025-03-12 18:40:21] 
+peer 1ip: ::1
+port: 56638
+
+[2025-03-12 18:45:17] command received. "send txn"
+[2025-03-12 18:45:17] inside
+[2025-03-12 18:45:17] {"type":"txn","data":{"type":"money","from":"0x87664687ef","to":"0x87843ea","amount":8E-1}}
+[2025-03-12 18:49:55] 
+[2025-03-12 18:49:55] 8080
+[2025-03-12 18:49:55] cli server started /tmp/z_node8080
+[2025-03-12 18:49:59] 
+[2025-03-12 18:49:59] 8081
+[2025-03-12 18:49:59] cli server started /tmp/z_node8081
+[2025-03-12 18:50:16] command received. "send txn"
+[2025-03-12 18:50:16] inside
+[2025-03-12 18:52:45] 
+[2025-03-12 18:52:45] 8081
+[2025-03-12 18:52:45] cli server started /tmp/z_node8081
+[2025-03-12 18:52:56] ÒB
+[2025-03-12 18:52:56] 8083
+[2025-03-12 18:52:56] cli server started /tmp/z_node8083
+[2025-03-12 18:53:25] command received. "add peer"
+[2025-03-12 18:53:25] peer connected!
+[2025-03-12 18:53:25] peer connected!
+[2025-03-12 18:53:44] command received. "send txn"
+[2025-03-12 18:53:44] inside
+[2025-03-12 18:53:44] {"type":"txn","data":{"type":"money","from":"0x87664687ef","to":"0x87843ea","amount":8E-1}}
+[2025-03-12 18:53:44] {"type":"txn","data":{"type":"money","from":"0x87664687ef","to":"0x87843ea","amount":8E-1}}
+[2025-03-13 16:09:09] 
+[2025-03-13 16:09:09] 8080
+[2025-03-13 16:09:09] cli server started /tmp/z_node8080
+[2025-03-13 16:09:52] 
+[2025-03-13 16:09:52] 8081
+[2025-03-13 16:09:52] cli server started /tmp/z_node8081
+[2025-03-13 16:12:55] command received. "add peer"
+[2025-03-13 16:12:55] peer connected!
+[2025-03-13 16:12:55] peer connected!
+[2025-03-13 16:15:10] command received. "list clients"
+[2025-03-13 16:15:10] 
+peer 1ip: ::1
+port: 8081
+
+[2025-03-13 16:15:22] command received. "list clients"
+[2025-03-13 16:15:22] 
+peer 1ip: ::1
+port: 55100
+
+[2025-03-13 16:16:37] command received. "send txn"
+[2025-03-13 16:16:37] inside
+[2025-03-13 16:16:37] {"type":"txn","data":{"type":"money","from":"0x87664687ef","to":"0x87843ea","amount":8E-1}}
+[2025-03-13 16:16:37] {"type":"txn","data":{"type":"money","from":"0x87664687ef","to":"0x87843ea","amount":8E-1}}

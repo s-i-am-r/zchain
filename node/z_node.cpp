@@ -122,10 +122,10 @@ public:
 class peer : public std::enable_shared_from_this<peer>
 {
 private:
-    std::shared_ptr<tcp::socket> sock;
     std::array<char, 1024> buff;
 
 public:
+    std::shared_ptr<tcp::socket> sock;
     void print()
     {
         log_ << "ip: " << sock->remote_endpoint().address().to_string() << "\nport: " << sock->remote_endpoint().port() << "\n";
@@ -138,13 +138,17 @@ public:
 
     awaitable<void> start()
     {
-        int len = co_await sock->async_receive(buffer(buff), use_awaitable);
-        std::string_view tmp(buff.data(), len);
-        boost::json::value z = boost::json::parse(tmp);
-
-        if (z.at("type").as_string() == "txn")
+        while (true)
         {
-            log_ << "txn received!: " << z.at("data").as_string() << std::endl;
+            int len = co_await sock->async_receive(buffer(buff), use_awaitable);
+            log_ << std::string(buff.begin(),len) << std::endl;
+            std::string_view tmp(buff.data(), len);
+            boost::json::value z = boost::json::parse(tmp);
+
+            if (z.at("type").as_string() == "txn")
+            {
+                log_ << "txn received!: " << z.at("data").as_string() << std::endl;
+            }
         }
     }
 };
@@ -177,9 +181,9 @@ public:
     awaitable<void> cli()
     {
         std::string name = "/tmp/z_node";
-        int n=static_cast<int>(acceptor_.local_endpoint().port());
-        log_<<n<<std::endl;
-        name+=std::to_string(n);
+        int n = static_cast<int>(acceptor_.local_endpoint().port());
+        log_ << n << std::endl;
+        name += std::to_string(n);
         log_ << "cli server started " + name << std::endl;
         unlink(name.c_str());
         local::stream_protocol::acceptor acceptor(pool_.get_executor(), local::stream_protocol::endpoint(name));
@@ -214,17 +218,25 @@ public:
                             auto client = std::make_shared<tcp::socket>(pool_.executor());
                              co_await client->async_connect(tcp::endpoint(boost::asio::ip::address::from_string(std::string(z.at("ip").as_string())), z.at("port").as_int64()), use_awaitable);
                              auto p = std::make_shared<peer>(client, pool_);
-                             peers.push_back(p);
-                              })(),
+                             peers.push_back(p); })(),
                          detached);
                 continue;
             }
-            if(z.at("cmd").as_string() == "send txn"){
-                for(auto& peer:peers){
-                    
-                }
+            if (z.at("cmd").as_string() == "send txn")
+            {
+                log_ << "inside" << std::endl;
+                boost::json::value neww = boost::json::object();
+                neww.as_object()["type"] = "txn";
+                neww.as_object()["data"] = z.at("txn");
+                std::string serialized_data = boost::json::serialize(neww);
+                co_spawn(pool_.get_executor(), ([&]() -> awaitable<void>
+                                                {
+                    for(auto& peer:peers){
+                        log_ << serialized_data << std::endl;
+                        co_await peer->sock->async_write_some(buffer(serialized_data),use_awaitable);
+                } })(),
+                         detached);
             }
-
         }
     }
 };
