@@ -11,6 +11,7 @@ private:
     std::string data;
     std::string prev_hash;
     std::string cur_hash;
+    std::string validators;
     std::time_t timestamp;
     int nonce;
 

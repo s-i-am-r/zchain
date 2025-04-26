@@ -138,6 +138,7 @@ public:
 
     awaitable<void> start()
     {
+        // main thread
         while (true)
         {
             int len = co_await sock->async_receive(buffer(buff), use_awaitable);
